@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		54F7EA4220D9079700A03BD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F7EA4120D9079700A03BD6 /* AppDelegate.swift */; };
-		54F7EA4420D9079700A03BD6 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 54F7EA4320D9079700A03BD6 /* GameScene.sks */; };
-		54F7EA4620D9079700A03BD6 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 54F7EA4520D9079700A03BD6 /* Actions.sks */; };
 		54F7EA4820D9079700A03BD6 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F7EA4720D9079700A03BD6 /* GameScene.swift */; };
 		54F7EA4A20D9079700A03BD6 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F7EA4920D9079700A03BD6 /* GameViewController.swift */; };
 		54F7EA4D20D9079700A03BD6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54F7EA4B20D9079700A03BD6 /* Main.storyboard */; };
@@ -20,8 +18,6 @@
 /* Begin PBXFileReference section */
 		54F7EA3E20D9079700A03BD6 /* ColorsSwitch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorsSwitch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54F7EA4120D9079700A03BD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		54F7EA4320D9079700A03BD6 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		54F7EA4520D9079700A03BD6 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		54F7EA4720D9079700A03BD6 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		54F7EA4920D9079700A03BD6 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		54F7EA4C20D9079700A03BD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,17 +56,47 @@
 		54F7EA4020D9079700A03BD6 /* ColorsSwitch */ = {
 			isa = PBXGroup;
 			children = (
-				54F7EA4120D9079700A03BD6 /* AppDelegate.swift */,
-				54F7EA4320D9079700A03BD6 /* GameScene.sks */,
-				54F7EA4520D9079700A03BD6 /* Actions.sks */,
-				54F7EA4720D9079700A03BD6 /* GameScene.swift */,
+				54F7EA5320D9079900A03BD6 /* Info.plist */,
+				54F7EA5C20D90B1B00A03BD6 /* Assets */,
+				54F7EA5B20D90B1300A03BD6 /* Template */,
+				54F7EA5A20D90AD900A03BD6 /* Scenes */,
+				54F7EA5920D90AC000A03BD6 /* ViewController */,
+			);
+			path = ColorsSwitch;
+			sourceTree = "<group>";
+		};
+		54F7EA5920D90AC000A03BD6 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
 				54F7EA4920D9079700A03BD6 /* GameViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		54F7EA5A20D90AD900A03BD6 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				54F7EA4720D9079700A03BD6 /* GameScene.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		54F7EA5B20D90B1300A03BD6 /* Template */ = {
+			isa = PBXGroup;
+			children = (
+				54F7EA4120D9079700A03BD6 /* AppDelegate.swift */,
+			);
+			path = Template;
+			sourceTree = "<group>";
+		};
+		54F7EA5C20D90B1B00A03BD6 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
 				54F7EA4B20D9079700A03BD6 /* Main.storyboard */,
 				54F7EA4E20D9079800A03BD6 /* Assets.xcassets */,
 				54F7EA5020D9079800A03BD6 /* LaunchScreen.storyboard */,
-				54F7EA5320D9079900A03BD6 /* Info.plist */,
 			);
-			path = ColorsSwitch;
+			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,10 +158,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				54F7EA4D20D9079700A03BD6 /* Main.storyboard in Resources */,
-				54F7EA4420D9079700A03BD6 /* GameScene.sks in Resources */,
 				54F7EA4F20D9079800A03BD6 /* Assets.xcassets in Resources */,
 				54F7EA5220D9079800A03BD6 /* LaunchScreen.storyboard in Resources */,
-				54F7EA4620D9079700A03BD6 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
