@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		548E522620DA87BB00E0618B /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548E522520DA87BB00E0618B /* Settings.swift */; };
+		548E522820DA9BF600E0618B /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548E522720DA9BF600E0618B /* MenuScene.swift */; };
 		54F7EA4220D9079700A03BD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F7EA4120D9079700A03BD6 /* AppDelegate.swift */; };
 		54F7EA4820D9079700A03BD6 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F7EA4720D9079700A03BD6 /* GameScene.swift */; };
 		54F7EA4A20D9079700A03BD6 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F7EA4920D9079700A03BD6 /* GameViewController.swift */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		548E522520DA87BB00E0618B /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		548E522720DA9BF600E0618B /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		54F7EA3E20D9079700A03BD6 /* ColorsSwitch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorsSwitch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54F7EA4120D9079700A03BD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		54F7EA4720D9079700A03BD6 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -77,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				54F7EA4720D9079700A03BD6 /* GameScene.swift */,
+				548E522720DA9BF600E0618B /* MenuScene.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -85,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				54F7EA4120D9079700A03BD6 /* AppDelegate.swift */,
+				548E522520DA87BB00E0618B /* Settings.swift */,
 			);
 			path = Template;
 			sourceTree = "<group>";
@@ -172,6 +178,8 @@
 			files = (
 				54F7EA4820D9079700A03BD6 /* GameScene.swift in Sources */,
 				54F7EA4A20D9079700A03BD6 /* GameViewController.swift in Sources */,
+				548E522820DA9BF600E0618B /* MenuScene.swift in Sources */,
+				548E522620DA87BB00E0618B /* Settings.swift in Sources */,
 				54F7EA4220D9079700A03BD6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
