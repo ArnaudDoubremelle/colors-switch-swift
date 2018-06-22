@@ -58,7 +58,6 @@ class GameScene: SKScene {
         limitZone = SKShapeNode(rectOf: CGSize(width: frame.size.width, height: 10))
         limitZone.lineWidth = 0
         limitZone.position = CGPoint(x: frame.midX, y: frame.minY + colorSwitch.size.height)
-        limitZone.zPosition = ZPositions.ball
         limitZone.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: frame.size.width, height: 10))
         limitZone.physicsBody?.categoryBitMask = PhysicsCategories.limitCategory
         limitZone.physicsBody?.isDynamic = false
@@ -88,7 +87,7 @@ class GameScene: SKScene {
         ball.zPosition = ZPositions.ball
         ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width/2)
         ball.physicsBody?.categoryBitMask = PhysicsCategories.ballCategory
-        ball.physicsBody?.contactTestBitMask = PhysicsCategories.switchCategory
+        ball.physicsBody?.contactTestBitMask = PhysicsCategories.switchCategory | PhysicsCategories.limitCategory
         ball.physicsBody?.collisionBitMask = PhysicsCategories.none
         addChild(ball)
     }
@@ -127,9 +126,9 @@ class GameScene: SKScene {
 extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
-        print(contact.bodyA.categoryBitMask)
-        print(contact.bodyB.categoryBitMask)
+        
         if contactMask == PhysicsCategories.ballCategory | PhysicsCategories.switchCategory {
+            print(1)
             if let ball = contact.bodyA.node?.name == "Ball" ? contact.bodyA.node as? SKSpriteNode : contact.bodyB.node as? SKSpriteNode {
                 if currentColorIndex == switchState.rawValue {
                     run(SKAction.playSoundFileNamed("success_" + "\(currentColorIndex ?? 0)", waitForCompletion: false))
@@ -138,6 +137,7 @@ extension GameScene: SKPhysicsContactDelegate {
                     yGravity -= score%10 == 0 ? 1.0 : 0.0
                     setupPhysics()
                     updateScoreLabel()
+                    ball.physicsBody = SKPhysicsBody()
                     ball.run(SKAction.fadeOut(withDuration: 0.25), completion: {
                         ball.removeFromParent()
                         self.spawnBall()
@@ -145,8 +145,11 @@ extension GameScene: SKPhysicsContactDelegate {
                 } else {
                     gameOver()
                 }
+            } else {
+                gameOver()
             }
         } else if contactMask == PhysicsCategories.ballCategory | PhysicsCategories.limitCategory {
+            print(2)
             gameOver()
         }
     }
