@@ -11,15 +11,13 @@ import SpriteKit
 class MenuScene: SKScene {
     
     override func didMove(to view: SKView) {
-        backgroundColor = UIColor(red: 44/255, green: 62/255, blue: 80/255, alpha: 1.0)
-        
         addLogo()
         addLabels()
+        createBackground()
     }
     
     func addLogo() {
         let logo = SKSpriteNode(imageNamed: "logo")
-        logo.size = CGSize(width: frame.size.width/4, height: frame.size.width/4)
         logo.position = CGPoint(x: frame.midX, y: frame.midY + frame.size.height/4)
         addChild(logo)
     }
@@ -49,14 +47,31 @@ class MenuScene: SKScene {
     }
     
     func animate(label: SKLabelNode) {
-//        let fadeOut = SKAction.fadeOut(withDuration: 0.5)
-//        let fadeIn = SKAction.fadeIn(withDuration: 0.5)
-        
         let scaleUp = SKAction.scale(to: 1.1, duration: 0.5)
         let scaleDown = SKAction.scale(to: 1.0, duration: 0.5)
         
         let sequence = SKAction.sequence([scaleUp, scaleDown])
         label.run(SKAction.repeatForever(sequence))
+    }
+    
+    func createBackground() {
+        let backgroundTexture = SKTexture(imageNamed: "background")
+        
+        for i in 0 ... 1 {
+            let background = SKSpriteNode(texture: backgroundTexture)
+            background.size = CGSize(width: background.size.width, height: frame.size.height)
+            background.zPosition = -30
+            background.anchorPoint = CGPoint.zero
+            background.position = CGPoint(x: (backgroundTexture.size().width * CGFloat(i)) - CGFloat(1 * i), y: 0)
+            addChild(background)
+            
+            let moveLeft = SKAction.moveBy(x: -backgroundTexture.size().width, y: 0, duration: 50)
+            let moveReset = SKAction.moveBy(x: backgroundTexture.size().width, y: 0, duration: 0)
+            let moveLoop = SKAction.sequence([moveLeft, moveReset])
+            let moveForever = SKAction.repeatForever(moveLoop)
+            
+            background.run(moveForever)
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

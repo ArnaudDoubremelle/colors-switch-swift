@@ -32,6 +32,7 @@ class GameScene: SKScene {
     var score = 0
     var xGravity = ((Double(arc4random()) / 0xFFFFFFFF) * (1.2)) - 0.6
     var yGravity: Double = -2.0
+    var startLocation: CGPoint!
     
     override func didMove(to view: SKView) {
         setupPhysics()
@@ -44,7 +45,7 @@ class GameScene: SKScene {
     }
     
     func layoutScene() {
-        backgroundColor = UIColor(red: 44/255, green: 62/255, blue: 80/255, alpha: 1.0)
+        backgroundColor = UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1.0)
         
         colorSwitch = SKSpriteNode(imageNamed: "ColorCircle")
         colorSwitch.size = CGSize(width: frame.size.width/3, height: frame.size.width/3)
@@ -57,7 +58,7 @@ class GameScene: SKScene {
         
         limitZone = SKShapeNode(rectOf: CGSize(width: frame.size.width, height: 10))
         limitZone.lineWidth = 0
-        limitZone.position = CGPoint(x: frame.midX, y: frame.minY + colorSwitch.size.height)
+        limitZone.position = CGPoint(x: frame.midX, y: frame.minY + colorSwitch.size.height/2)
         limitZone.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: frame.size.width, height: 10))
         limitZone.physicsBody?.categoryBitMask = PhysicsCategories.limitCategory
         limitZone.physicsBody?.isDynamic = false
@@ -65,7 +66,7 @@ class GameScene: SKScene {
         
         scoreLabel.fontName = "AvenirNext-Bold"
         scoreLabel.fontSize = 60.0
-        scoreLabel.fontColor = UIColor.white
+        scoreLabel.fontColor = UIColor(red: 145/255, green: 145/255, blue: 145/255, alpha: 1.0)
         scoreLabel.position = CGPoint(x: frame.midX, y: frame.midY)
         scoreLabel.zPosition = ZPositions.label
         addChild(scoreLabel)
@@ -113,12 +114,26 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch = touches.first!
+        startLocation = colorSwitch.position
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesMoved(touches, with: event)
+        
+        let touch: UITouch = touches.first!
         let location = touch.location(in: self)
-        if ((colorSwitch.position.x - 20) < location.x && location.x < (colorSwitch.position.x + 20)) {
+        
+        colorSwitch.position = CGPoint(x: location.x, y: frame.minY + colorSwitch.size.height)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesMoved(touches, with: event)
+        
+        let touch: UITouch = touches.first!
+        let location = touch.location(in: self)
+        
+        if ((startLocation.x - 20) < location.x && location.x < (startLocation.x + 20)) {
             turnWheel()
-        } else {
-            colorSwitch.position = CGPoint(x: location.x, y: frame.minY + colorSwitch.size.height)
         }
     }
 }
@@ -128,12 +143,11 @@ extension GameScene: SKPhysicsContactDelegate {
         let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
         if contactMask == PhysicsCategories.ballCategory | PhysicsCategories.switchCategory {
-            print(1)
             if let ball = contact.bodyA.node?.name == "Ball" ? contact.bodyA.node as? SKSpriteNode : contact.bodyB.node as? SKSpriteNode {
                 if currentColorIndex == switchState.rawValue {
                     run(SKAction.playSoundFileNamed("success_" + "\(currentColorIndex ?? 0)", waitForCompletion: false))
                     score += 1
-                    xGravity = ((Double(arc4random()) / 0xFFFFFFFF) * (1.2)) - 0.6
+                    xGravity = ((Double(arc4random()) / 0xFFFFFFFF) * (1.0)) - 0.5
                     yGravity -= score%10 == 0 ? 1.0 : 0.0
                     setupPhysics()
                     updateScoreLabel()
@@ -145,11 +159,8 @@ extension GameScene: SKPhysicsContactDelegate {
                 } else {
                     gameOver()
                 }
-            } else {
-                gameOver()
             }
         } else if contactMask == PhysicsCategories.ballCategory | PhysicsCategories.limitCategory {
-            print(2)
             gameOver()
         }
     }
