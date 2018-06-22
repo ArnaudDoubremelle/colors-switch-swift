@@ -45,7 +45,7 @@ class GameScene: SKScene {
     }
     
     func layoutScene() {
-        backgroundColor = UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1.0)
+        backgroundColor = UIColor(red: 33/255, green: 33/255, blue: 33/255, alpha: 1.0)
         
         colorSwitch = SKSpriteNode(imageNamed: "ColorCircle")
         colorSwitch.size = CGSize(width: frame.size.width/3, height: frame.size.width/3)
@@ -65,11 +65,15 @@ class GameScene: SKScene {
         addChild(limitZone)
         
         scoreLabel.fontName = "AvenirNext-Bold"
-        scoreLabel.fontSize = 60.0
-        scoreLabel.fontColor = UIColor(red: 145/255, green: 145/255, blue: 145/255, alpha: 1.0)
-        scoreLabel.position = CGPoint(x: frame.midX, y: frame.midY)
+        scoreLabel.fontSize = 40.0
+        scoreLabel.fontColor = UIColor.white
+        scoreLabel.position = CGPoint(x: frame.maxX - 40, y: frame.midY - 15)
         scoreLabel.zPosition = ZPositions.label
         addChild(scoreLabel)
+        
+        let logo = SKSpriteNode(imageNamed: "logo")
+        logo.position = CGPoint(x: frame.midX, y: frame.midY)
+        addChild(logo)
         
         spawnBall()
     }
